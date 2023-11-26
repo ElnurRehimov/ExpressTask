@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create category table
+      author: Elnur Rehimov
+      changes:
+        - createTable:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(30)
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false

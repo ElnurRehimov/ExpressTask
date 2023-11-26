@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - "~/apps/postgres:/var/lib/postgresql/data"
+    environment:
+      - POSTGRES_PASSWORD=S3cret
+      - POSTGRES_USER=root
+      - POSTGRES_DB=product-management
+
+  app:
+    build:
+      context: .
+    ports:
+      - "8085:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/product-management
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=S3cret
+    depends_on:
+      - postgres
+
+
+volumes:
+  db-data:

@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product-management
+    username: root
+    password: S3cret
+    driver-class-name: org.postgresql.Driver
+    maximumPoolSize: 5
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 5
+      idle-timeout: 10000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  liquibase:
+    change-log: classpath:db/changelog-master.yml
+
+
+springdoc:
+ swagger-ui.path: /api
+ swagger-ui.tryItOutEnabled: true
